@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Aetos Finn Esports</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top, #0f172a, #020617);
+  color: white;
+}
+
+/* ===== NAVBAR ===== */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  position: sticky;
+  top: 0;
+  background: rgba(2,6,23,0.9);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+}
+
+.logo {
+  font-weight: bold;
+  color: #3b82f6;
+}
+
+.menu-toggle {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.nav-links {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  background: #020617;
+  display: none;
+  flex-direction: column;
+  text-align: center;
+}
+
+.nav-links a {
+  padding: 15px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  color: #cbd5f5;
+  text-decoration: none;
+}
+
+.nav-links.show {
+  display: flex;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  padding: 40px 15px;
+  max-width: 1000px;
+  margin: auto;
+  text-align: center;
+}
+
+/* ===== TITLE ===== */
+h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  text-shadow:
+    0 0 5px #3b82f6,
+    0 0 10px #3b82f6,
+    0 0 20px #2563eb;
+  animation: glowPulse 2s infinite;
+}
+
+@keyframes glowPulse {
+  0% { text-shadow: 0 0 5px #3b82f6; }
+  50% { text-shadow: 0 0 20px #60a5fa; }
+  100% { text-shadow: 0 0 5px #3b82f6; }
+}
+
+.subtitle {
+  color: #60a5fa;
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+/* ===== CARD ===== */
+.card {
+  background: rgba(30,41,59,0.8);
+  padding: 18px;
+  border-radius: 15px;
+  margin: 15px 0;
+  border: 1px solid rgba(59,130,246,0.3);
+  box-shadow: 0 0 15px rgba(59,130,246,0.2);
+  backdrop-filter: blur(10px);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  transition: 0.3s;
+}
+
+.about {
+  text-align: left;
+  line-height: 1.6;
+}
+
+.about ul {
+  padding-left: 20px;
+}
+
+/* ===== GRID ===== */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+/* ===== BUTTON ===== */
+.btn {
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+  color: white;
+  cursor: pointer;
+}
+
+/* ===== SLIDER ===== */
+.slider {
+  max-width: 100%;
+  margin: 20px auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.slide {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  position: absolute;
+  opacity: 0;
+  transition: 1s;
+}
+
+.slide.active {
+  opacity: 1;
+  position: relative;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  border: none;
+  color: white;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.prev { left: 5px; }
+.next { right: 5px; }
+
+/* ===== DOTS ===== */
+.dots {
+  text-align: center;
+}
+
+.dot {
+  height: 8px;
+  width: 8px;
+  margin: 5px;
+  background: gray;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.dot.active {
+  background: #3b82f6;
+}
+
+/* ===== DESKTOP ===== */
+@media (min-width: 768px) {
+  .menu-toggle { display: none; }
+
+  .nav-links {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+    gap: 30px;
+    background: none;
+  }
+
+  h1 { font-size: 48px; }
+
+  .slide { height: 400px; }
+
+  .grid {
+    grid-template-columns: repeat(3,1fr);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">Aetos</div>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <div class="nav-links" id="navLinks">
+    <a href="#">Home</a>
+    <a href="#">Tournament</a>
+    <a href="#">Register</a>
+    <a href="#">Contact</a>
+  </div>
+</nav>
+
+<div class="container">
+
+<h1>Aetos Finn Esports</h1>
+<p class="subtitle">No Mercy. Just Victory.</p>
+
+<div class="card about">
+<h2>About</h2>
+<p>Platform turnamen Mobile Legends untuk semua player.</p>
+</div>
+
+<div class="card">
+<h2>Upcoming Tournament</h2>
+<p>Aetos MLBB Weekly Cup</p>
+<button class="btn">Lihat Detail</button>
+</div>
+
+<div class="grid">
+<div class="card">🏆 Weekly Tournament</div>
+<div class="card">📋 Open Registration</div>
+<div class="card">🎮 Online Match</div>
+</div>
+
+<div class="slider">
+<img src="https://res.cloudinary.com/dg9p0qutv/image/upload/v1775553810/fewf_2_c1h50f.jpg" class="slide active">
+<img src="https://res.cloudinary.com/dg9p0qutv/image/upload/v1775553808/fewf_1_btnvvc.jpg" class="slide">
+<img src="https://res.cloudinary.com/dg9p0qutv/image/upload/v1775553808/fewf_3_yrbpz5.jpg" class="slide">
+
+<button class="prev" onclick="prevSlide()">❮</button>
+<button class="next" onclick="nextSlide()">❯</button>
+</div>
+
+<div class="dots">
+<span class="dot" onclick="goToSlide(0)"></span>
+<span class="dot" onclick="goToSlide(1)"></span>
+<span class="dot" onclick="goToSlide(2)"></span>
+</div>
+
+</div>
+
+<script>
+let index = 0;
+const slides = document.querySelectorAll(".slide");
+const dots = document.querySelectorAll(".dot");
+
+function showSlide(i){
+  slides.forEach(s=>s.classList.remove("active"));
+  dots.forEach(d=>d.classList.remove("active"));
+  slides[i].classList.add("active");
+  dots[i].classList.add("active");
+}
+
+function nextSlide(){
+  index = (index+1) % slides.length;
+  showSlide(index);
+}
+
+function prevSlide(){
+  index = (index-1+slides.length)%slides.length;
+  showSlide(index);
+}
+
+function goToSlide(i){
+  index=i;
+  showSlide(index);
+}
+
+setInterval(nextSlide,5000);
+
+function toggleMenu(){
+  document.getElementById("navLinks").classList.toggle("show");
+}
+</script>
+
+</body>
+</html>
