@@ -63,7 +63,7 @@
     nav {
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 35px;
     padding: 15px;
     position: sticky;
     top: 0;
@@ -104,13 +104,16 @@
     text-decoration: none;
     font-weight: 500;
     transition: 0.3s;
+    display: inline-block;
     }
 
     /* hover glow */
     nav a:hover {
     color: #60a5fa;
+    transform: scale(1.1);
+    text-shadow: 0 0 8px #3b82f6, 0 0 15px #60a5fa;
     }
-
+    
     /* underline animasi */
     nav a::after {
     content: "";
