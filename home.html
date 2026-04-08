@@ -1,301 +1,409 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Aetos Finn Esports</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Aetos Finn Esports</title>
+  <style>
+    body {
+      background: 
+        linear-gradient(rgba(2,6,23,0.85), rgba(2,6,23,0.95)),
+        url('background.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      text-align: center;
+    }
 
-<style>
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: radial-gradient(circle at top, #0f172a, #020617);
-  color: white;
-}
+    .slider {
+    max-width: 1000px;
+    margin: 30px auto;
+    overflow: hidden;
+    border-radius: 15px;
+    }
 
-/* ===== NAVBAR ===== */
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
-  position: sticky;
-  top: 0;
-  background: rgba(2,6,23,0.9);
-  backdrop-filter: blur(10px);
-  z-index: 999;
-}
+    .slides {
+    position: relative;
+    }
 
-.logo {
-  font-weight: bold;
-  color: #3b82f6;
-}
+    .slide {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    }
 
-.menu-toggle {
-  font-size: 24px;
-  cursor: pointer;
-}
+    .slide.active {
+    opacity: 1;
+    position: relative;
+    }
 
-.nav-links {
-  position: absolute;
-  top: 60px;
-  left: 0;
-  width: 100%;
-  background: #020617;
-  display: none;
-  flex-direction: column;
-  text-align: center;
-}
+    .dots {
+    text-align: center;
+    margin-top: 10px;
+    }
 
-.nav-links a {
-  padding: 15px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  color: #cbd5f5;
-  text-decoration: none;
-}
+    .dot {
+    height: 10px;
+    width: 10px;
+    margin: 5px;
+    background-color: gray;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    }
 
-.nav-links.show {
-  display: flex;
-}
+    .dot.active {
+    background-color: #3b82f6;
+    }
 
-/* ===== CONTAINER ===== */
-.container {
-  padding: 40px 15px;
-  max-width: 1000px;
-  margin: auto;
-  text-align: center;
-}
+    nav {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: rgba(2, 6, 23, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+    }
+    
+    .prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    border: none;
+    color: white;
+    font-size: 24px;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: 0.3s;
+    }
 
-/* ===== TITLE ===== */
-h1 {
-  font-size: 32px;
-  margin-bottom: 10px;
-  text-shadow:
-    0 0 5px #3b82f6,
-    0 0 10px #3b82f6,
-    0 0 20px #2563eb;
-  animation: glowPulse 2s infinite;
-}
+    .prev:hover, .next:hover {
+    background: rgba(59,130,246,0.8);
+    }
 
-@keyframes glowPulse {
-  0% { text-shadow: 0 0 5px #3b82f6; }
-  50% { text-shadow: 0 0 20px #60a5fa; }
-  100% { text-shadow: 0 0 5px #3b82f6; }
-}
+    .prev {
+    left: 10px;
+    }
 
-.subtitle {
-  color: #60a5fa;
-  font-size: 14px;
-  margin-bottom: 30px;
-}
+    .next {
+    right: 10px;
+    }
+    nav a {
+    position: relative;
+    color: #cbd5f5;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+    }
 
-/* ===== CARD ===== */
-.card {
-  background: rgba(30,41,59,0.8);
-  padding: 18px;
-  border-radius: 15px;
-  margin: 15px 0;
-  border: 1px solid rgba(59,130,246,0.3);
-  box-shadow: 0 0 15px rgba(59,130,246,0.2);
-  backdrop-filter: blur(10px);
-}
+    /* hover glow */
+    nav a:hover {
+    color: #60a5fa;
+    }
 
-.card:hover {
-  transform: translateY(-5px);
-  transition: 0.3s;
-}
+    /* underline animasi */
+    nav a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    left: 0;
+    bottom: -5px;
+    background: #3b82f6;
+    transition: 0.3s;
+    }
 
-.about {
-  text-align: left;
-  line-height: 1.6;
-}
+    nav a:hover::after {
+    width: 100%;
+    }
 
-.about ul {
-  padding-left: 20px;
-}
+    .container {
+      padding: 80px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
 
-/* ===== GRID ===== */
-.grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 15px;
-}
+    h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+      color: #f8f9fa;
+      text-shadow:
+        0 0 5px #3b82f6,
+        0 0 10px #3b82f6,
+        0 0 20px #2563eb,
+        0 0 40px #2563eb;
+    }
+    @keyframes glowPulse {
+      0% {
+        text-shadow: 0 0 5px #3b82f6, 0 0 10px #3b82f6;
+      }
+      50% {
+        text-shadow: 0 0 20px #60a5fa, 0 0 40px #3b82f6;
+      }
+      100% {
+        text-shadow: 0 0 5px #3b82f6, 0 0 10px #3b82f6;
+      }
+    }
 
-/* ===== BUTTON ===== */
-.btn {
-  width: 100%;
-  margin-top: 15px;
-  padding: 12px;
-  border: none;
-  border-radius: 10px;
-  background: linear-gradient(90deg, #3b82f6, #2563eb);
-  color: white;
-  cursor: pointer;
-}
+    h1 {
+      animation: glowPulse 2s infinite;
+    }
 
-/* ===== SLIDER ===== */
-.slider {
-  max-width: 100%;
-  margin: 20px auto;
-  position: relative;
-  overflow: hidden;
-  border-radius: 15px;
-}
+    .subtitle {
+      color: #60a5fa;
+      margin-bottom: 50px;
+      font-size: 18px;
+    }
 
-.slide {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  position: absolute;
-  opacity: 0;
-  transition: 1s;
-}
+    .card {
+      background: rgba(30, 41, 59, 0.8);
+      padding: 25px;
+      border-radius: 15px;
+      margin: 20px 0;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+      backdrop-filter: blur(10px);
+    }
 
-.slide.active {
-  opacity: 1;
-  position: relative;
-}
+    .card:hover {
+      transform: translateY(-5px);
+      transition: 0.3s;
+      box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
+    }
+    
+    .about {
+      text-align: left;
+      line-height: 1.7;
+    }
 
-.prev, .next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.5);
-  border: none;
-  color: white;
-  padding: 8px;
-  cursor: pointer;
-}
+    .about h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-.prev { left: 5px; }
-.next { right: 5px; }
+    .about ul {
+      margin: 20px 0;
+      padding-left: 20px;
+    }
 
-/* ===== DOTS ===== */
-.dots {
-  text-align: center;
-}
+    .about ul li {
+      margin: 10px 0;
+      color: #cbd5f5;
+    }
 
-.dot {
-  height: 8px;
-  width: 8px;
-  margin: 5px;
-  background: gray;
-  display: inline-block;
-  border-radius: 50%;
-}
+    .cta-text {
+      text-align: center;
+      font-size: 18px;
+      color: #facc15;
+      font-weight: bold;
+      margin-top: 20px;
+    }
 
-.dot.active {
-  background: #3b82f6;
-}
+    .cta-sub {
+      text-align: center;
+      color: #60a5fa;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
 
-/* ===== DESKTOP ===== */
-@media (min-width: 768px) {
-  .menu-toggle { display: none; }
+    @media (min-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
 
-  .nav-links {
-    display: flex !important;
-    position: static;
-    flex-direction: row;
-    gap: 30px;
-    background: none;
-  }
+    .card h3 {
+      color: #93c5fd;
+    }
 
-  h1 { font-size: 48px; }
+    .btn {
+      margin-top: 20px;
+      padding: 14px 30px;
+      font-size: 16px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #3b82f6, #2563eb);
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
+      transition: 0.3s;
+    }
 
-  .slide { height: 400px; }
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(59, 130, 246, 1);
+    }
 
-  .grid {
-    grid-template-columns: repeat(3,1fr);
-  }
-}
-</style>
+    .highlight {
+      color: #facc15;
+      font-weight: bold;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 14px;
+      color: #94a3b8;
+    }
+  </style>
 </head>
 
 <body>
 
-<nav>
-  <div class="logo">Aetos</div>
-  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-  <div class="nav-links" id="navLinks">
-    <a href="#">Home</a>
-    <a href="#">Tournament</a>
-    <a href="#">Register</a>
-    <a href="#">Contact</a>
+    <nav>
+    <a class="home" href="home.html">Home</a>
+    <a href="#tournament">Tournament</a>
+    <a href="#register">Register</a>
+    <a href="#contact">Contact</a>
+    </nav>
+
+  <div class="container">
+    <h1>Aetos Finn Esports</h1>
+    <p class="subtitle">No Mercy. Just Victory.</p>
+
+    <div class="card about">
+    <h2>🎮 About Aetos Finn Esports</h2>
+
+      <p>
+        Aetos Finn Esports adalah platform turnamen online yang dirancang khusus untuk para pemain Mobile Legends yang ingin mengasah kemampuan, membangun tim, dan meraih prestasi di dunia esports.
+      </p>
+
+      <p>
+        Dengan sistem yang mudah diakses dari mana saja, Aetos Finn Esports menghadirkan pengalaman kompetisi yang seru, adil, dan profesional. Setiap turnamen diselenggarakan dengan format yang terstruktur, didukung oleh manajemen pertandingan yang rapi serta komunitas yang kompetitif.
+      </p>
+
+      <ul>
+        <li>⚔️ Menguji strategi dan kekompakan tim</li>
+        <li>🌍 Bertanding melawan player dari berbagai daerah</li>
+        <li>🔥 Membangun nama di scene esports</li>
+        <li>💰 Mendapatkan kesempatan meraih hadiah menarik</li>
+      </ul>
+
+      <p>
+        Aetos Finn Esports menjadi wadah bagi para gamer—baik pemula maupun semi-pro—untuk berkembang, bersaing, dan menunjukkan potensi terbaik mereka.
+      </p>
+
+      <p class="cta-text">
+        🔥 Saatnya buktikan skill tim kamu dan jadilah yang terbaik!
+      </p>
+
+      <p class="cta-sub">
+        Bergabung sekarang dan rasakan atmosfer kompetisi esports sesungguhnya bersama Aetos Finn Esports.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>🎯 Upcoming Tournament</h2>
+      <p>Aetos MLBB Weekly Cup</p>
+      <p>Start: 2 Mei 2026</p>
+      <button class="btn">Lihat Detail</button>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>🏆 Weekly Tournament</h3>
+        <p>Turnamen rutin setiap minggu dengan sistem eliminasi.</p>
+      </div>
+
+      <div class="card">
+        <h3>📋 Open Registration</h3>
+        <p>Terbuka untuk semua rank <span class="highlight">Epic - Mythic</span>.</p>
+      </div>
+
+      <div class="card">
+        <h3>🎮 Online Match</h3>
+        <p>Main dari rumah via custom room tanpa harus datang ke lokasi.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🚀 Join Tournament</h2>
+      <p>Daftarkan tim kamu sekarang dan mulai push rank bareng!</p>
+
+     <a href="https://docs.google.com/forms/d/e/1FAIpQLSfwF4PHLMNBVtfbte9j2K2yprBC4ngfd2QYsZBF7piqhjCw3g/viewform?pli=1&pli=1" target="_blank">
+        <button class="btn">Daftar Sekarang</button>
+     </a>
+    </div>
+
+    <div class="card">
+      <h2>📞 Contact</h2>
+      <p>WhatsApp: 085882145918</p>
+      <p>Instagram: @aetosfinn.esports</p>
+    </div>
+
+    <div class="slider">
+    <div class="slides">
+        <img src="https://res.cloudinary.com/dg9p0qutv/image/upload/v1775553810/fewf_2_c1h50f.jpg" class="slide active">
+        <img src="https://res.cloudinary.com/dg9p0qutv/image/upload/v1775553808/fewf_1_btnvvc.jpg" class="slide">
+        <img src="https://res.cloudinary.com/dg9p0qutv/image/upload/v1775553808/fewf_3_yrbpz5.jpg" class="slide">
+        <button class="prev" onclick="prevSlide()">❮</button>
+        <button class="next" onclick="nextSlide()">❯</button>
+    </div>
+    </div>
+
+    <div class="dots">
+        <span class="dot" onclick="goToSlide(0)"></span>
+        <span class="dot" onclick="goToSlide(1)"></span>
+        <span class="dot" onclick="goToSlide(2)"></span>
+    </div>
+
+    <footer>
+      © 2026 Aetos Finn Esports. All Rights Reserved.
+    </footer>
+
   </div>
-</nav>
-
-<div class="container">
-
-<h1>Aetos Finn Esports</h1>
-<p class="subtitle">No Mercy. Just Victory.</p>
-
-<div class="card about">
-<h2>About</h2>
-<p>Platform turnamen Mobile Legends untuk semua player.</p>
-</div>
-
-<div class="card">
-<h2>Upcoming Tournament</h2>
-<p>Aetos MLBB Weekly Cup</p>
-<button class="btn">Lihat Detail</button>
-</div>
-
-<div class="grid">
-<div class="card">🏆 Weekly Tournament</div>
-<div class="card">📋 Open Registration</div>
-<div class="card">🎮 Online Match</div>
-</div>
-
-<div class="slider">
-<img src="https://res.cloudinary.com/dg9p0qutv/image/upload/v1775553810/fewf_2_c1h50f.jpg" class="slide active">
-<img src="https://res.cloudinary.com/dg9p0qutv/image/upload/v1775553808/fewf_1_btnvvc.jpg" class="slide">
-<img src="https://res.cloudinary.com/dg9p0qutv/image/upload/v1775553808/fewf_3_yrbpz5.jpg" class="slide">
-
-<button class="prev" onclick="prevSlide()">❮</button>
-<button class="next" onclick="nextSlide()">❯</button>
-</div>
-
-<div class="dots">
-<span class="dot" onclick="goToSlide(0)"></span>
-<span class="dot" onclick="goToSlide(1)"></span>
-<span class="dot" onclick="goToSlide(2)"></span>
-</div>
-
-</div>
 
 <script>
-let index = 0;
-const slides = document.querySelectorAll(".slide");
-const dots = document.querySelectorAll(".dot");
+document.addEventListener("DOMContentLoaded", function () {
 
-function showSlide(i){
-  slides.forEach(s=>s.classList.remove("active"));
-  dots.forEach(d=>d.classList.remove("active"));
-  slides[i].classList.add("active");
-  dots[i].classList.add("active");
-}
+  let index = 0;
+  const slides = document.querySelectorAll(".slide");
+  const dots = document.querySelectorAll(".dot");
 
-function nextSlide(){
-  index = (index+1) % slides.length;
-  showSlide(index);
-}
+  function showSlide(i) {
+    slides.forEach(s => s.classList.remove("active"));
+    dots.forEach(d => d.classList.remove("active"));
 
-function prevSlide(){
-  index = (index-1+slides.length)%slides.length;
-  showSlide(index);
-}
+    slides[i].classList.add("active");
+    dots[i].classList.add("active");
+  }
 
-function goToSlide(i){
-  index=i;
-  showSlide(index);
-}
+  function nextSlide() {
+    index++;
+    if (index >= slides.length) index = 0;
+    showSlide(index);
+  }
 
-setInterval(nextSlide,5000);
+  function prevSlide() {
+    index--;
+    if (index < 0) index = slides.length - 1;
+    showSlide(index);
+  }
 
-function toggleMenu(){
-  document.getElementById("navLinks").classList.toggle("show");
-}
+  function goToSlide(i) {
+    index = i;
+    showSlide(index);
+  }
+
+  setInterval(nextSlide, 5000);
+
+  window.nextSlide = nextSlide;
+  window.prevSlide = prevSlide;
+  window.goToSlide = goToSlide;
+
+});
 </script>
 
 </body>
