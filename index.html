@@ -134,7 +134,27 @@
     h1 {
       font-size: 48px;
       margin-bottom: 10px;
-      text-shadow: 0 0 10px #3b82f6;
+      color: #f8f9fa;
+      text-shadow:
+        0 0 5px #3b82f6,
+        0 0 10px #3b82f6,
+        0 0 20px #2563eb,
+        0 0 40px #2563eb;
+    }
+    @keyframes glowPulse {
+      0% {
+        text-shadow: 0 0 5px #3b82f6, 0 0 10px #3b82f6;
+      }
+      50% {
+        text-shadow: 0 0 20px #60a5fa, 0 0 40px #3b82f6;
+      }
+      100% {
+        text-shadow: 0 0 5px #3b82f6, 0 0 10px #3b82f6;
+      }
+    }
+
+    h1 {
+      animation: glowPulse 2s infinite;
     }
 
     .subtitle {
@@ -153,6 +173,44 @@
       backdrop-filter: blur(10px);
     }
 
+    .card:hover {
+      transform: translateY(-5px);
+      transition: 0.3s;
+      box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
+    }
+    
+    .about {
+      text-align: left;
+      line-height: 1.7;
+    }
+
+    .about h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .about ul {
+      margin: 20px 0;
+      padding-left: 20px;
+    }
+
+    .about ul li {
+      margin: 10px 0;
+      color: #cbd5f5;
+    }
+
+    .cta-text {
+      text-align: center;
+      font-size: 18px;
+      color: #facc15;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .cta-sub {
+      text-align: center;
+      color: #60a5fa;
+    }
     .grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -211,14 +269,44 @@
 
   <div class="container">
     <h1>Aetos Finn Esports</h1>
-    <p class="subtitle">Online Tournament Platform</p>
+    <p class="subtitle">No Mercy. Just Victory.</p>
+
+    <div class="card about">
+    <h2>🎮 About Aetos Finn Esports</h2>
+
+      <p>
+        Aetos Finn Esports adalah platform turnamen online yang dirancang khusus untuk para pemain Mobile Legends yang ingin mengasah kemampuan, membangun tim, dan meraih prestasi di dunia esports.
+      </p>
+
+      <p>
+        Dengan sistem yang mudah diakses dari mana saja, Aetos Finn Esports menghadirkan pengalaman kompetisi yang seru, adil, dan profesional. Setiap turnamen diselenggarakan dengan format yang terstruktur, didukung oleh manajemen pertandingan yang rapi serta komunitas yang kompetitif.
+      </p>
+
+      <ul>
+        <li>⚔️ Menguji strategi dan kekompakan tim</li>
+        <li>🌍 Bertanding melawan player dari berbagai daerah</li>
+        <li>🔥 Membangun nama di scene esports</li>
+        <li>💰 Mendapatkan kesempatan meraih hadiah menarik</li>
+      </ul>
+
+      <p>
+        Aetos Finn Esports menjadi wadah bagi para gamer—baik pemula maupun semi-pro—untuk berkembang, bersaing, dan menunjukkan potensi terbaik mereka.
+      </p>
+
+      <p class="cta-text">
+        🔥 Saatnya buktikan skill tim kamu dan jadilah yang terbaik!
+      </p>
+
+      <p class="cta-sub">
+        Bergabung sekarang dan rasakan atmosfer kompetisi esports sesungguhnya bersama Aetos Finn Esports.
+      </p>
+    </div>
 
     <div class="card">
-      <h2>🔥 About Platform</h2>
-      <p>
-        Aetos Finn Esports adalah platform turnamen online untuk Mobile Legends.
-        Ikuti kompetisi dari mana saja dan buktikan skill tim kamu!
-      </p>
+      <h2>🎯 Upcoming Tournament</h2>
+      <p>Aetos MLBB Weekly Cup</p>
+      <p>Start: 2 Mei 2026</p>
+      <button class="btn">Lihat Detail</button>
     </div>
 
     <div class="grid">
