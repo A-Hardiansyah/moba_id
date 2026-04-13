@@ -8,13 +8,91 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
-body {
-  font-family: 'Orbitron', sans-serif;
-  background: #020617;
-  color: white;
-  text-align: center;
-}
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: 
+        linear-gradient(rgba(2,6,23,0.85), rgba(2,6,23,0.95)),
+        url('background.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      text-align: center;
+    }
+ nav {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: rgba(2, 6, 23, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+    }
+    
+    .prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    border: none;
+    color: white;
+    font-size: 24px;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: 0.3s;
+    }
 
+    .prev:hover, .next:hover {
+    background: rgba(59,130,246,0.8);
+    }
+
+    .prev {
+    left: 10px;
+    }
+
+    .next {
+    right: 10px;
+    }
+    nav a {
+    padding: 8px 16px;
+    border-radius: 10px;
+    position: relative;
+    color: #cbd5f5;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+    display: inline-block;
+    }
+    nav a.active {
+      background: rgba(59,130,246,0.3);
+      color: white;
+    }
+    /* hover glow */
+    nav a:hover {
+    background: rgba(59,130,246,0.2);
+    color: #60a5fa;
+    transform: scale(1.1);
+    text-shadow: 0 0 8px #3b82f6, 0 0 15px #60a5fa;
+    }
+    
+    /* underline animasi */
+    nav a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    left: 0;
+    bottom: -5px;
+    background: #3b82f6;
+    transition: 0.3s;
+    }
+
+    nav a:hover::after {
+    width: 100%;
+    }
 h1 {
   margin: 30px;
   color: #60a5fa;
@@ -87,7 +165,12 @@ h1 {
 </head>
 
 <body>
-
+    <nav>
+    <a class="home" href="home.html">Home</a>
+    <a class="home" href="tournament.html">Tournament</a>
+    <a class="home" href="regist.html">Register</a>
+    <a class="home" href="contact.html">Contact</a>
+    </nav>
 <h1>📞 Contact Us</h1>
 
 <div class="container">
