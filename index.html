@@ -101,18 +101,12 @@
     right: 10px;
     }
     nav a {
-    padding: 8px 16px;
-    border-radius: 10px;
     position: relative;
     color: #cbd5f5;
     text-decoration: none;
     font-weight: 500;
     transition: 0.3s;
     display: inline-block;
-    }
-    nav a.active {
-      background: rgba(59,130,246,0.3);
-      color: white;
     }
     /* hover glow */
     nav a:hover {
@@ -243,10 +237,11 @@
       gap: 20px;
     }
 
-      .grid {
-        grid-template-columns: 1fr 1fr 1fr;
-      }
+@media (min-width: 768px) { 
+  .grid { 
+    grid-template-columns: 1fr 1fr 1fr; 
     }
+  }
 
     .card h3 {
       color: #93c5fd;
