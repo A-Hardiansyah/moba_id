@@ -10,23 +10,26 @@
 <style>
 body {
   font-family: 'Orbitron', sans-serif;
-  background: #020617;
-  color: white;
+  background: 
+    linear-gradient(rgba(2,6,23,0.85), rgba(2,6,23,0.95)),
+    url('background.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   text-align: center;
 }
 
-/* TITLE */
 h1 {
   margin: 20px;
   color: #60a5fa;
 }
 
-/* BRACKET CONTAINER */
+/* CONTAINER */
 .bracket {
   display: flex;
   justify-content: center;
-  gap: 40px;
-  padding: 20px;
+  gap: 80px;
+  padding: 40px;
   overflow-x: auto;
 }
 
@@ -35,24 +38,26 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  position: relative;
 }
 
-/* MATCH BOX */
+/* MATCH */
 .match {
+  position: relative;
   background: rgba(30,41,59,0.8);
-  border: 1px solid rgba(59,130,246,0.3);
+  border: 1px solid rgba(242, 10, 10, 0.3);
   border-radius: 10px;
   padding: 10px;
-  margin: 20px 0;
-  width: 150px;
-  box-shadow: 0 0 10px rgba(59,130,246,0.3);
+  margin: 40px 0;
+  width: 160px;
+  box-shadow: 0 0 10px rgba(1, 236, 123, 0.3);
 }
 
 /* TEAM */
 .team {
   padding: 8px;
   margin: 5px 0;
-  background: rgba(2,6,23,0.8);
+  background: rgba(210, 162, 162, 0.8);
   border-radius: 6px;
   cursor: pointer;
   transition: 0.3s;
@@ -62,7 +67,6 @@ h1 {
   background: #3b82f6;
 }
 
-/* WINNER */
 .winner {
   background: #22c55e !important;
 }
@@ -72,13 +76,51 @@ h1 {
   transform: scale(1.2);
 }
 
+/* ===== GARIS BRACKET ===== */
+
+/* GARIS HORIZONTAL */
+.connect::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -60px;
+  width: 60px;
+  height: 2px;
+  background: #3b82f6;
+  box-shadow: 0 0 8px #3b82f6;
+}
+
+/* GARIS ATAS (┐) */
+.connect.top::before {
+  content: "";
+  position: absolute;
+  right: -60px;
+  top: 50%;
+  width: 2px;
+  height: 60px;
+  background: #3b82f6;
+  box-shadow: 0 0 8px #3b82f6;
+}
+
+/* GARIS BAWAH (┘) */
+.connect.bottom::before {
+  content: "";
+  position: absolute;
+  right: -60px;
+  top: calc(50% - 60px);
+  width: 2px;
+  height: 60px;
+  background: #3b82f6;
+  box-shadow: 0 0 8px #3b82f6;
+}
+
 /* MOBILE */
 @media(max-width:768px){
   .bracket {
-    gap: 20px;
+    gap: 40px;
   }
   .match {
-    width: 120px;
+    width: 130px;
   }
 }
 </style>
@@ -92,19 +134,22 @@ h1 {
 
   <!-- ROUND 1 -->
   <div class="round">
-    <div class="match">
+    <div class="match connect top">
       <div class="team">Team A</div>
       <div class="team">Team B</div>
     </div>
-    <div class="match">
+
+    <div class="match connect bottom">
       <div class="team">Team C</div>
       <div class="team">Team D</div>
     </div>
-    <div class="match">
+
+    <div class="match connect top">
       <div class="team">Team E</div>
       <div class="team">Team F</div>
     </div>
-    <div class="match">
+
+    <div class="match connect bottom">
       <div class="team">Team G</div>
       <div class="team">Team H</div>
     </div>
@@ -112,11 +157,12 @@ h1 {
 
   <!-- SEMI FINAL -->
   <div class="round">
-    <div class="match">
+    <div class="match connect top">
       <div class="team">Winner 1</div>
       <div class="team">Winner 2</div>
     </div>
-    <div class="match">
+
+    <div class="match connect bottom">
       <div class="team">Winner 3</div>
       <div class="team">Winner 4</div>
     </div>
@@ -133,15 +179,12 @@ h1 {
 </div>
 
 <script>
-// klik untuk tandai pemenang
+// klik winner
 document.querySelectorAll('.team').forEach(team => {
   team.addEventListener('click', () => {
-
     const parent = team.parentElement;
     parent.querySelectorAll('.team').forEach(t => t.classList.remove('winner'));
-
     team.classList.add('winner');
-
   });
 });
 </script>
