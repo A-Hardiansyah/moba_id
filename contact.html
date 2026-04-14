@@ -156,6 +156,49 @@ h1 {
 .subtitle {
   color: #94a3b8;
 }
+@media (max-width: 480px) {
+      nav {
+      font-size: 14px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      padding: 15px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(2, 6, 23, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+      }
+      
+      nav a {
+      position: relative;
+      color: #cbd5f5;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+      display: inline-block;
+      }
+      /* hover glow */
+      nav a:hover {
+      background: rgba(59,130,246,0.2);
+      color: #60a5fa;
+      transform: scale(1.1);
+      text-shadow: 0 0 8px #3b82f6, 0 0 15px #60a5fa;
+      }
+      
+      /* underline animasi */
+      nav a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      left: 0;
+      bottom: -5px;
+      background: #3b82f6;
+      transition: 0.3s;
+      }
+    } 
 </style>
 </head>
 
