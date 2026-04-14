@@ -14,7 +14,7 @@
         url('background.jpeg');
       background-size: cover;
       background-position: center;
-      background-attachment: fixed;
+      background-attachment: scroll;
       text-align: center;
     }
 
@@ -61,19 +61,6 @@
     .dot.active {
     background-color: #3b82f6;
     }
-
-    nav {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    padding: 15px;
-    position: sticky;
-    top: 0;
-    z-index: 999;
-    background: rgba(2, 6, 23, 0.8);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
-    }
     
     .prev, .next {
     position: absolute;
@@ -100,6 +87,20 @@
     .next {
     right: 10px;
     }
+
+    nav {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: rgba(2, 6, 23, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+    }
+
     nav a {
     position: relative;
     color: #cbd5f5;
@@ -231,6 +232,9 @@
       text-align: center;
       color: #60a5fa;
     }
+    .card h3 {
+      color: #93c5fd;
+    }
     .grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -249,10 +253,167 @@
     h1 {
     font-size: 45px;
     }
-  } 
-    .card h3 {
-      color: #93c5fd;
-    }
+    
+      nav {
+      font-size: 14px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      padding: 15px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(2, 6, 23, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+      }
+      
+      nav a {
+      position: relative;
+      color: #cbd5f5;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+      display: inline-block;
+      }
+      /* hover glow */
+      nav a:hover {
+      background: rgba(59,130,246,0.2);
+      color: #60a5fa;
+      transform: scale(1.1);
+      text-shadow: 0 0 8px #3b82f6, 0 0 15px #60a5fa;
+      }
+      
+      /* underline animasi */
+      nav a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      left: 0;
+      bottom: -5px;
+      background: #3b82f6;
+      transition: 0.3s;
+      }
+
+      nav a:hover::after {
+      width: 100%;
+      }
+
+      .slider {
+      max-width: 400px;
+      margin: 30px auto;
+      overflow: hidden;
+      border-radius: 15px;
+      }
+
+      .slides {
+      position: relative;
+      }
+
+      .slide {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      position: absolute;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      }
+
+      .slide.active {
+      opacity: 1;
+      position: relative;
+      }
+
+      .dots {
+      text-align: center;
+      margin-top: 10px;
+      }
+
+      .dot {
+      height: 10px;
+      width: 10px;
+      margin: 5px;
+      background-color: gray;
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+      }
+
+      .dot.active {
+      background-color: #3b82f6;
+      }
+      .card:nth-child(1) { animation-delay: 0.2s; }
+      .card:nth-child(2) { animation-delay: 0.4s; }
+      .card:nth-child(3) { animation-delay: 0.6s; }
+      .card:nth-child(4) { animation-delay: 0.8s; }
+      .card {
+        background: rgba(30, 41, 59, 0.8);
+        font-size: 12px;
+        padding: 25px;
+        border-radius: 15px;
+        margin: 12px 0;
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+        backdrop-filter: blur(10px);
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeUp 0.8s ease forwards;
+      }
+      @keyframes fadeUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .card:hover {
+        transform: translateY(-5px);
+        transition: 0.3s;
+        box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
+      }
+      
+      .about {
+        text-align: left;
+        font-size: 12px;
+        line-height: 1.7;
+      }
+
+      .about h2 {
+        text-align: center;
+        font-size: 15px;
+        margin-bottom: 20px;
+      }
+
+      .about ul {
+        margin: 20px 0;
+        font-size: 12px;
+        padding-left: 20px;
+      }
+
+      .about ul li {
+        margin: 20px 0;
+        font-size: 12px;
+        color: #cbd5f5;
+      }
+
+      .cta-text {
+        text-align: center;
+        font-size: 12px;
+        color: #facc15;
+        font-weight: bold;
+        margin-top: 20px;
+      }
+
+      .cta-sub {
+        text-align: center;
+        font-size: 12px;
+        color: #60a5fa;
+      }
+      .card h3 {
+        font-size: 15px;
+        color: #93c5fd;
+      }
+    } 
 
     .btn {
       margin-top: 20px;
