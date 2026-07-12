@@ -469,12 +469,210 @@
       font-size: 14px;
       color: #94a3b8;
     }
+.popup{
+    display:none;
+    position:fixed;
+    z-index:9999;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.8);
 
+    justify-content:center;
+    align-items:center;
+
+    animation:fade .4s;
+}
+
+@keyframes fade{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+.popup-content{
+
+    width:900px;
+    max-width:90%;
+
+    background: rgba(15, 23, 42, 0.6);
+
+    border-radius:20px;
+
+    display:flex;
+
+    overflow:hidden;
+
+    border:2px solid #3b82f6;
+
+    box-shadow:0 0 30px #3b82f6;
+
+}
+
+.popup-content img{
+
+    width:45%;
+    object-fit:cover;
+
+}
+
+.popup-info{
+
+    padding:35px;
+    color:white;
+
+}
+
+.popup-info h2{
+
+    color:#60a5fa;
+
+    margin-bottom:20px;
+
+}
+
+.popup-info p{
+
+    font-size:20px;
+
+    margin:15px 0;
+
+}
+
+.popup-btn{
+
+    display:inline-block;
+
+    margin-top:25px;
+
+    padding:15px 35px;
+
+    background:#2563eb;
+
+    color:white;
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+.popup-btn:hover{
+
+    background:#3b82f6;
+
+}
+
+.close{
+
+    position:absolute;
+
+    right:30px;
+
+    top:20px;
+
+    color:white;
+
+    font-size:40px;
+
+    cursor:pointer;
+
+}
+/* ==========================
+   MOBILE POPUP
+========================== */
+@media (max-width:768px){
+
+.popup-content{
+
+    width:90%;
+    max-height:90vh;
+
+    display:flex;
+    flex-direction:column;
+
+    overflow-y:auto;
+
+}
+
+.popup-content img{
+
+    width:100%;
+    height:220px;
+    object-fit:cover;
+
+}
+
+.popup-info{
+
+    padding:10px;
+    text-align:center;
+
+}
+
+.popup-info h2{
+
+    font-size:10px;
+
+}
+
+.popup-info p{
+
+    font-size:5px;
+    margin:10px 0;
+
+}
+
+.popup-btn{
+
+    display:block;
+
+    width:100%;
+
+    padding:15px;
+
+    font-size:12px;
+
+}
+
+.close{
+
+    right:15px;
+    top:10px;
+
+    font-size:30px;
+
+}
+
+}
   </style>
 </head>
 
 <body>
+<!-- POPUP EVENT -->
+<div id="eventPopup" class="popup">
 
+  <div class="popup-content">
+
+    <span class="close">&times;</span>
+
+    <img src="popup.png" alt="Poster Event">
+
+    <div class="popup-info">
+
+      <h2>🏆 AETOS FINN FAST TOURNAMENT</h2>
+
+      <a href="regist.html" class="popup-btn">
+        Daftar Sekarang
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
     <nav>
     <a class="home" href="home.html">Home</a>
     <a class="home" href="tournament.html">Tournament</a>
@@ -595,6 +793,29 @@
   </div>
 
 <script>
+    const popup = document.getElementById("eventPopup");
+
+window.onload = function(){
+
+    popup.style.display = "flex";
+
+}
+
+document.querySelector(".close").onclick = function(){
+
+    popup.style.display = "none";
+
+}
+
+window.onclick = function(e){
+
+    if(e.target == popup){
+
+        popup.style.display = "none";
+
+    }
+
+}
 document.addEventListener("DOMContentLoaded", function () {
 
   let index = 0;
